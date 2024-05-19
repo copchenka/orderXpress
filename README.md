@@ -1,3 +1,3 @@
 Tables and their relationships:
-![orderXpress(1)](https://github.com/copchenka/orderXpress/assets/22070446/4c659550-f39f-4925-b107-e09fb5e4f795)
+![orderXpress(2)](https://github.com/copchenka/orderXpress/assets/22070446/3f3ef943-7c39-447a-a3b1-7f460c1d4260)
 
