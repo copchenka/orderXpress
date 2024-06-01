@@ -1,6 +1,6 @@
 package repository;
 
-import domain.Customer;
+import orderXpress.domain.Customer;
 
 import java.util.List;
 

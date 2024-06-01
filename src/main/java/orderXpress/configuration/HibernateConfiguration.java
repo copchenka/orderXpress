@@ -1,4 +1,4 @@
-package configuration;
+package orderXpress.configuration;
 
 
 import org.hibernate.SessionFactory;

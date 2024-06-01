@@ -1,8 +1,9 @@
 package repository;
 
-import domain.Customer;
-import domain.Order;
-import domain.OrderDetail;
+import orderXpress.domain.Customer;
+import orderXpress.domain.Order;
+import orderXpress.domain.OrderDetail;
+import orderXpress.domain.OrderStatus;
 
 import java.util.List;
 
@@ -13,5 +14,5 @@ public interface OrderRepository {
 
     List<Order> getAllOrders();
 
-    void updateOrderStatus(int orderId, String status);
+    void updateOrderStatus(int orderId, OrderStatus status);
 }

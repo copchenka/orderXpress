@@ -1,4 +1,4 @@
-package domain;
+package orderXpress.domain;
 
 import jakarta.persistence.*;
 import lombok.*;

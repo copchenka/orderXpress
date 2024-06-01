@@ -1,4 +1,4 @@
-package domain;
+package orderXpress.domain;
 
 public enum OrderStatus {
     PENDING,

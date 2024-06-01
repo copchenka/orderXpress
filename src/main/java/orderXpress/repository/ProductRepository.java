@@ -1,6 +1,6 @@
 package repository;
 
-import domain.Product;
+import orderXpress.domain.Product;
 
 import java.math.BigDecimal;
 import java.util.List;
