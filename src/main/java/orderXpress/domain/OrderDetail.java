@@ -16,15 +16,22 @@ public class OrderDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @ManyToOne
-    @JoinColumn(name = "orderId")
+    @JoinColumn(name = "order_id")
     private Order order;
     @ManyToOne
-    @JoinColumn(name = "productId")
+    @JoinColumn(name = "product_id")
     private Product product;
     @Column(name = "quantity")
     private Integer quantity;
     @Column(name = "unit_price")
     private Double unitPrice;
+
+//    @ManyToOne
+//    @JoinColumn(name = "orderId")
+//    private Order order;
+//    @ManyToOne
+//    @JoinColumn(name = "productId")
+//    private Product product;
 
     public OrderDetail(Order order, Product product, Integer quantity, Double unitPrice) {
         this.order = order;

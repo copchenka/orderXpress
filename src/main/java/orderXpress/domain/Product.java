@@ -3,6 +3,7 @@ package orderXpress.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 
@@ -22,12 +23,12 @@ public class Product {
     @Column(name = "description")
     private String description;
     @Column(name = "price")
-    private Double price;
+    private BigDecimal price;
 
     @OneToMany(mappedBy = "product")
     private List<OrderDetail> orderDetails;
 
-    public Product(String name, String description, Double price) {
+    public Product(String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.price = price;

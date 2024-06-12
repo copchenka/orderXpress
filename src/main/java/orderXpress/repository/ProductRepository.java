@@ -1,4 +1,4 @@
-package repository;
+package orderXpress.repository;
 
 import orderXpress.domain.Product;
 

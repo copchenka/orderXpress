@@ -1,6 +1,10 @@
 package orderXpress.configuration;
 
 
+import orderXpress.domain.Customer;
+import orderXpress.domain.Order;
+import orderXpress.domain.OrderDetail;
+import orderXpress.domain.Product;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -30,15 +34,21 @@ public class HibernateConfiguration {
                 .applySettings(properties)
                 .build();
 
-        Configuration configuration = new Configuration();
-//                .addAnnotatedClass(Customer.class)
-//                .addAnnotatedClass(Organization.class)
-//                .addAnnotatedClass(Account.class);
-        //.addAnnotatedClass(Customer.class);
+        Configuration configuration = new Configuration()
+                .addAnnotatedClass(Customer.class)
+                .addAnnotatedClass(Order.class)
+                .addAnnotatedClass(Product.class)
+                .addAnnotatedClass(OrderDetail.class);
+
         factory = configuration.buildSessionFactory(registry);
     }
 
     public static SessionFactory getFactory() {
         return factory;
+    }
+    public static void shutdown() {
+        if (factory != null) {
+            factory.close();
+        }
     }
 }

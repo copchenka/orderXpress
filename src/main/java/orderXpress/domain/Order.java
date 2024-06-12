@@ -3,13 +3,18 @@ package orderXpress.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
 
 @Getter
 @Setter
-@ToString
+@ToString(
+        exclude = {"orderDetails",
+                "customer"
+        }
+)
 @NoArgsConstructor
 @Entity
 @Table(name = "orders")
@@ -22,7 +27,8 @@ public class Order {
     @Column(name = "customer_id")
     private Integer customer_id;
     @Column(name = "total_cost")
-    private Long totalCost;
+    private BigDecimal totalCost;
+    @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private OrderStatus status;
     @Column(name = "creation_date")
@@ -30,13 +36,16 @@ public class Order {
     @OneToMany(
             mappedBy = "order",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     private List<OrderDetail> orderDetails;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false, insertable = false, updatable = false)
+    private Customer customer;
 
-
-    public Order( Integer customer_id, Long totalCost, OrderStatus status, Date creationDate, List<OrderDetail> orderDetails) {
+    public Order(Integer id, Integer customer_id, BigDecimal totalCost, OrderStatus status, Date creationDate, List<OrderDetail> orderDetails) {
+        this.id = id;
         this.customer_id = customer_id;
         this.totalCost = totalCost;
         this.status = status;

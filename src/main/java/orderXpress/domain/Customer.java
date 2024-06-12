@@ -9,7 +9,9 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
+@ToString(
+        exclude = "orders"
+)
 @NoArgsConstructor
 @Entity
 @Table(name = "customers")
@@ -28,7 +30,7 @@ public class Customer {
     String address;
     @OneToMany(
             mappedBy = "customer",
-            fetch = FetchType.LAZY
+            fetch = FetchType.EAGER
     )
     private List<Order> orders;
 
@@ -40,5 +42,4 @@ public class Customer {
         this.phone = phone;
         this.address = address;
     }
-
 }
