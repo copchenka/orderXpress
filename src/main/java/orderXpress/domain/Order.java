@@ -40,7 +40,7 @@ public class Order {
     )
     private List<OrderDetail> orderDetails;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "customer_id", nullable = false, insertable = false, updatable = false)
     private Customer customer;
 

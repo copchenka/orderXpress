@@ -9,7 +9,10 @@ import java.util.List;
 
 @Getter
 @Setter
-@ToString
+@ToString(
+        exclude = {"orderDetails"
+        }
+)
 @NoArgsConstructor
 @Entity
 @Table(name = "products")
@@ -25,7 +28,9 @@ public class Product {
     @Column(name = "price")
     private BigDecimal price;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(
+            mappedBy = "product",
+            fetch = FetchType.EAGER)
     private List<OrderDetail> orderDetails;
 
     public Product(String name, String description, BigDecimal price) {

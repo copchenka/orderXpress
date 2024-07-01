@@ -9,9 +9,9 @@ import org.hibernate.SessionFactory;
 
 import java.math.BigDecimal;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+
 
 public class HibernateOrderRepository extends AbstractRepository implements OrderRepository {
     public HibernateOrderRepository(SessionFactory factory) {
@@ -41,7 +41,9 @@ public class HibernateOrderRepository extends AbstractRepository implements Orde
 
     @Override
     public List<Order> getOrdersByCustomer(Customer customer) {
-        return null;
+        return withTransaction(session -> session.createQuery("from Order where customer_id = :customer_id", Order.class)
+                .setParameter("customer_id", customer.getId())
+                .list());
     }
 
     @Override
@@ -52,8 +54,23 @@ public class HibernateOrderRepository extends AbstractRepository implements Orde
 
     @Override
     public void updateOrderStatus(int orderId, OrderStatus status) {
-
+        withTransaction(session -> {
+            Order order = session.get(Order.class, orderId);
+            if (order != null) {
+                order.setStatus(status);
+                session.update(order);
+            } else {
+                throw new IllegalArgumentException("Order with id " + orderId + " not found.");
+            }
+            return null;
+        });
     }
 
 
+    public List<OrderDetail> getOrderDetailsByOrderId(int orderId) {
+        return withSession(session -> session.createQuery("from OrderDetail where order.id = :order_id", OrderDetail.class)
+                .setParameter("order_id", orderId)
+                .list());
+    }
 }
+

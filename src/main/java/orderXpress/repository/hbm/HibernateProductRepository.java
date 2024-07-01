@@ -20,11 +20,13 @@ public class HibernateProductRepository extends AbstractRepository implements Pr
 
     @Override
     public Product getProductById(int productId) {
-        return null;
+        return withSession(session -> session
+                .get(Product.class, productId));
     }
 
     @Override
     public List<Product> getAllProducts() {
-        return null;
+        return withSession(session -> session.createQuery("from Product", Product.class)
+                .list());
     }
 }
