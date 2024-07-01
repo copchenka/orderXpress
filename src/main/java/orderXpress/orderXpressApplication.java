@@ -7,6 +7,7 @@ import orderXpress.repository.hbm.HibernateCustomerRepository;
 import orderXpress.repository.hbm.HibernateOrderRepository;
 import orderXpress.repository.hbm.HibernateProductRepository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public class orderXpressApplication {
@@ -47,6 +48,8 @@ public class orderXpressApplication {
 //            }
 
             //Product
+            System.out.println(productRepository.addProduct("Электровеник","Шустрый электрический веник. Матерится", BigDecimal.valueOf(6666.69)));
+
 //            List<Product> products = productRepository.getAllProducts();
 //            for (Product product : products) {
 //                System.out.println(product);

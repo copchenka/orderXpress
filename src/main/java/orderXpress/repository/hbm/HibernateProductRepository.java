@@ -15,7 +15,11 @@ public class HibernateProductRepository extends AbstractRepository implements Pr
 
     @Override
     public Product addProduct(String name, String description, BigDecimal price) {
-        return null;
+        return withTransaction(session -> {
+            Product product = new Product(name, description, price);
+            session.persist(product);
+            return product;
+        });
     }
 
     @Override
